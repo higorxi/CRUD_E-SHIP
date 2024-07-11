@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import 'database_helper.dart';
-import 'address.dart';
+import '../database/database_helper.dart';
 
 class HomeScreen extends StatefulWidget {
   @override

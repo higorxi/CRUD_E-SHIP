@@ -1,3 +1,4 @@
+import 'package:crud_e_ship/database/address.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
@@ -50,5 +51,15 @@ class DatabaseHelper {
   Future<int> deleteAddress(int id) async {
     final db = await database;
     return await db.delete('addresses', where: 'id = ?', whereArgs: [id]);
+  }
+
+  Future<void> updateAddress(Address address) async {
+    final db = await database;
+    await db.update(
+      'addresses',
+      address.toMap(),
+      where: 'id = ?',
+      whereArgs: [address.id],
+    );
   }
 }
