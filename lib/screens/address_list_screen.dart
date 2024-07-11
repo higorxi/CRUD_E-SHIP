@@ -1,9 +1,13 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../database/database_helper.dart';
 import '../database/address.dart';
 
 class AddressListScreen extends StatefulWidget {
+  const AddressListScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _AddressListScreenState createState() => _AddressListScreenState();
 }
 
@@ -38,52 +42,78 @@ class _AddressListScreenState extends State<AddressListScreen> {
     showDialog(
       context: context,
       builder: (context) {
-        final _streetController = TextEditingController(text: address.street);
-        final _cityController = TextEditingController(text: address.city);
-        final _stateController = TextEditingController(text: address.state);
-        final _zipController = TextEditingController(text: address.zip);
+        final streetController = TextEditingController(text: address.street);
+        final cityController = TextEditingController(text: address.city);
+        final stateController = TextEditingController(text: address.state);
+        final zipController = TextEditingController(text: address.zip);
 
         return AlertDialog(
-          title: Text('Editar Endereço'),
+          title: const Text('Editar Endereço'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
-                controller: _streetController,
-                decoration: InputDecoration(labelText: 'Rua'),
+                controller: streetController,
+                decoration: const InputDecoration(labelText: 'Rua'),
               ),
               TextField(
-                controller: _cityController,
-                decoration: InputDecoration(labelText: 'Cidade'),
+                controller: cityController,
+                decoration: const InputDecoration(labelText: 'Cidade'),
               ),
               TextField(
-                controller: _stateController,
-                decoration: InputDecoration(labelText: 'Estado'),
+                controller: stateController,
+                decoration: const InputDecoration(labelText: 'Estado'),
               ),
               TextField(
-                controller: _zipController,
-                decoration: InputDecoration(labelText: 'CEP'),
+                controller: zipController,
+                decoration: const InputDecoration(labelText: 'CEP'),
               ),
             ],
           ),
           actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: Text('Cancelar'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                await DatabaseHelper().updateAddress(Address(
-                  id: address.id,
-                  street: _streetController.text,
-                  city: _cityController.text,
-                  state: _stateController.text,
-                  zip: _zipController.text,
-                ));
-                _refreshAddressList();
-                Navigator.pop(context);
-              },
-              child: Text('Salvar'),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 9.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color(0xffe4e2dd),foregroundColor: Colors.black,
+                        ),
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text('Cancelar'),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 9.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:Colors.black,
+                           foregroundColor:const Color(0xffe4e2dd),
+                        ),
+                        onPressed: () async {
+                          await DatabaseHelper().updateAddress(Address(
+                            id: address.id,
+                            street: streetController.text,
+                            city: cityController.text,
+                            state: stateController.text,
+                            zip: zipController.text,
+                          ));
+                          _refreshAddressList();
+                          // ignore: use_build_context_synchronously
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Salvar'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         );
@@ -95,7 +125,7 @@ class _AddressListScreenState extends State<AddressListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Endereços'),
+        title: const Text('Endereços'),
       ),
       body: ListView.builder(
         itemCount: _addresses.length,
@@ -107,11 +137,11 @@ class _AddressListScreenState extends State<AddressListScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
-                  icon: Icon(Icons.edit),
+                  icon: const Icon(Icons.edit),
                   onPressed: () => _editAddress(address),
                 ),
                 IconButton(
-                  icon: Icon(Icons.delete),
+                  icon: const Icon(Icons.delete),
                   onPressed: () => _deleteAddress(address.id!),
                 ),
               ],

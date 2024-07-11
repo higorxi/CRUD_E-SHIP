@@ -1,9 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import '../database/database_helper.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -65,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home'),
+        title: const Text('Home'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -77,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   TextFormField(
                     controller: _cepController,
-                    decoration: InputDecoration(labelText: 'CEP'),
+                    decoration: const InputDecoration(labelText: 'CEP'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Por favor, insira o CEP';
@@ -85,14 +88,19 @@ class _HomeScreenState extends State<HomeScreen> {
                       return null;
                     },
                   ),
-                  ElevatedButton(
-                    onPressed: () => _searchCep(_cepController.text),
-                    child: Text('Buscar CEP'),
+                  const SizedBox(height: 30),
+                  SizedBox(
+                    width: double.infinity,
+                    child: CupertinoButton(
+                      onPressed: () => _searchCep(_cepController.text),
+                      color: Colors.black,
+                      child: const Text('Buscar CEP'),
+                    ),
                   ),
                   if (_zip != null) ...[
                     TextFormField(
                       controller: _streetController,
-                      decoration: InputDecoration(labelText: 'Rua'),
+                      decoration: const InputDecoration(labelText: 'Rua'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira a Rua';
@@ -102,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     TextFormField(
                       controller: _cityController,
-                      decoration: InputDecoration(labelText: 'Cidade'),
+                      decoration: const InputDecoration(labelText: 'Cidade'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira a Cidade';
@@ -112,7 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     TextFormField(
                       controller: _stateController,
-                      decoration: InputDecoration(labelText: 'Estado'),
+                      decoration: const InputDecoration(labelText: 'Estado'),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Por favor, insira o Estado';
@@ -122,10 +130,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     Text('CEP: $_zip'),
                     if (_imageUrl != null) Image.network(_imageUrl!),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     ElevatedButton(
                       onPressed: _addAddress,
-                      child: Text('Adicionar Endereço'),
+                      child: const Text('Adicionar Endereço'),
                     ),
                   ],
                 ],
