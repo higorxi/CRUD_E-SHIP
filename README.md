@@ -20,8 +20,8 @@ Esse é um projeto em Flutter para demonstração de competencias, com intuito d
 1. **Clone o repositório**
 
    ```bash
-   git clone https://github.com/seu-usuario/address-crud-app.git
-   cd address-crud-app
+   git clone git@github.com:higorxi/CRUD_E-SHIP.git
+   cd CRUD_E-SHIP
 
 2. **Instale as dependências**
 
