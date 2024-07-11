@@ -1,16 +1,36 @@
-# crud_e_ship
+# CRUD ENDEREÇO E-SHIP
 
-A new Flutter project.
+Esse é um projeto em Flutter para demonstração de competencias, com intuito de criar uma aplicação utilizando Flutter e SQLite que consiga realizar as operações de CRUD, criar endereços, atualizar, ler e remover endereços.
 
-## Getting Started
+## Funcionalidades
 
-This project is a starting point for a Flutter application.
+- Adicionar endereços com busca por CEP
+- Listar endereços
+- Editar endereços
+- Excluir endereços
 
-A few resources to get you started if this is your first Flutter project:
+## Requisitos
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter SDK: [Instale Flutter](https://flutter.dev/docs/get-started/install)
+- Android Studio ou Visual Studio Code (recomendado para desenvolvimento Flutter)
+- Emulador Android ou dispositivo físico para testes
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Instruções para Rodar o Projeto
+
+1. **Clone o repositório**
+
+   ```bash
+   git clone https://github.com/seu-usuario/address-crud-app.git
+   cd address-crud-app
+
+2. **Instale as dependências**
+
+   ```bash
+   flutter pub get
+   
+3. **Execute o aplicativo**
+
+   ```bash
+   flutter run
+
+
